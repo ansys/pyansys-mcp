@@ -1,0 +1,548 @@
+"""Configuration file for docs.pyansys.com landing page."""
+
+from datetime import datetime
+import json
+import os
+from pathlib import Path
+import subprocess
+
+from ansys_sphinx_theme import ansys_favicon, get_version_match
+from docutils import nodes
+import github
+from PIL import Image
+import requests
+import sphinx
+from sphinx.builders.latex import LaTeXBuilder
+import toml
+import yaml
+
+from ansys.mcp.metapackage import __version__ as pyansys_mcp_version
+
+# Declare constants
+GENERATED_DIR = Path(__file__).parent / "package_versions"
+
+VERSIONS_TEMPLATE = """
+Package versions in PyAnsys {{ version }}
+============================{{ "=" * version|length }}
+
+The PyAnsys packages delivered in version {{ version }} are:
+{{ ' ' }}
+{%- for entry in table %}
+{{ entry }}
+{%- endfor %}
+"""
+
+INDEX_TEMPLATE = """
+Package versions
+================
+
+Users can find below the list of PyAnsys packages available in the various
+PyAnsys metapackages. The tables shows the package versions available in each
+metapackage release.
+
+.. toctree::
+   :maxdepth: 3
+   {{ ' ' }}
+   {%- for version in versions %}
+   version_{{ version }}
+   {%- endfor %}
+"""
+
+TMP_FILE = Path("tmp_pyproject.toml")
+
+LaTeXBuilder.supported_image_types = [
+    "image/png",
+    "image/pdf",
+    "image/svg+xml",
+]  # noqa: E501
+
+project = "pyansys-mcp"
+copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
+author = "ANSYS Inc."
+cname = os.getenv("DOCUMENTATION_CNAME", default="docs.pyansys.com")
+switcher_version = get_version_match(pyansys_mcp_version)
+
+# Get the PyAnsys MCP version
+release = version = pyansys_mcp_version
+
+html_theme = "ansys_sphinx_theme"
+html_short_title = html_title = "PyAnsys MCP"
+
+# Favicon
+html_favicon = ansys_favicon
+
+html_sidebars = {
+    "index": [],
+    "projects": ["projects_sidebar.html"],
+}
+
+extensions = [
+    "sphinx_design",
+    "sphinx_copybutton",
+    "sphinx_jinja",
+    "sphinxcontrib.mermaid",
+]
+
+
+# Static files
+templates_path = ["_templates"]
+html_static_path = ["_static"]
+html_css_files = [
+    "css/projects_sidebar.css",
+    # Landing page specific CSS files
+    "landing-page/css/style.css",
+]
+
+CONTENT_FOLDER = Path(__file__).parent.parent.parent / "content"
+metadata = CONTENT_FOLDER / "projects.yaml"
+
+
+def read_dependencies_from_pyproject():
+    """Read the dependencies declared in the project file."""
+    pyproject = Path(__file__).parent.parent.parent / "pyproject.toml"
+    if not pyproject.exists():
+        raise ValueError(f"The file {pyproject} does not exist.")
+
+    pyproject_content = toml.loads(pyproject.read_text(encoding="utf-8"))
+    dependencies = pyproject_content["project"]["dependencies"]
+    # Only consider pinned dependencies (PyAnsys packages)
+    return {pkg.split("==")[0]: pkg.split("==")[1] for pkg in dependencies if "==" in pkg}
+
+
+def read_optional_dependencies_from_pyproject():
+    """Read the extra dependencies declared in the project file."""
+    pyproject = Path(__file__).parent.parent.parent / "pyproject.toml"
+    if not pyproject.exists():
+        raise ValueError(f"The file {pyproject} does not exist.")
+
+    pyproject_content = toml.loads(pyproject.read_text(encoding="utf-8"))
+    exclude_targets = ["doc"]
+    optional_dependencies = {
+        target: {pkg.split("==")[0]: pkg.split("==")[1] for pkg in deps}
+        for target, deps in pyproject_content["project"]["optional-dependencies"].items()
+        if target not in exclude_targets
+    }
+    return optional_dependencies
+
+
+
+def convert_yaml_to_json():
+    """
+    Convert a YAML file to a JSON file.
+
+    Parameters:
+    yaml_path (Path): Path to the YAML file.
+    json_path (Path): Path to save the JSON file.
+
+    Returns:
+    None
+    """
+    if not metadata.exists() or not metadata.is_file():
+        raise FileNotFoundError(f"The file {metadata} does not exist or is not a file.")
+
+    try:
+        with metadata.open("r", encoding="utf-8") as yaml_file:
+            yaml_content = yaml.safe_load(yaml_file) or {}
+    except yaml.YAMLError as e:
+        raise ValueError(f"Error parsing YAML file: {e}") from e
+
+    projects = yaml_content.get("projects", {})
+    starred, others = [], []
+
+    try:
+        gh_client = github.Github(os.getenv("GITHUB_TOKEN", None))
+    except Exception:
+        gh_client = None
+
+    for _, proj in projects.items():
+        if gh_client:
+            try:
+                # Extract the repository name from the URL
+                repo_name: str = proj["repository"].split("https://github.com/")[-1].rstrip("/")
+                repository = gh_client.get_repo(repo_name)
+                proj["github_stars"] = repository.stargazers_count
+                starred.append(proj)
+            except Exception:
+                others.append(proj)
+                continue
+
+    starred.sort(key=lambda x: x.get("github_stars", 0), reverse=True)
+    projects_sorted = starred + others
+    projects_dict = {proj["name"]: proj for proj in projects_sorted}
+
+    output = {"projects": projects_dict}
+
+    json_path = Path(__file__).parent / "_static" / "projects.json"
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with json_path.open("w", encoding="utf-8") as json_file:
+        json.dump(output, json_file, indent=4)
+        print(f"JSON file successfully written to {json_path}")
+
+
+def read_project_json():
+    """Read the projects.json file and return its content."""
+    convert_yaml_to_json()  # Ensure the JSON is up to date
+    json_path = Path(__file__).parent / "_static" / "projects.json"
+    if not json_path.exists() or not json_path.is_file():
+        raise FileNotFoundError(f"The file {json_path} does not exist or is not a file.")
+    with json_path.open("r", encoding="utf-8") as json_file:
+        try:
+            json_content = json.load(json_file)
+            return json_content
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Error parsing JSON file: {e}")
+
+
+jinja_globals = {
+    "VERSION": version,
+    "SUPPORTED_PYTHON_VERSIONS": ["3.12", "3.13", "3.14"],
+    "SUPPORTED_PLATFORMS": ["Windows", "macOS", "Linux"],
+}
+jinja_contexts = {
+    "project_context": {"projects": read_project_json()},
+    "dependencies": {"dependencies": read_dependencies_from_pyproject()},
+    "optional_dependencies": {"optional_dependencies": read_optional_dependencies_from_pyproject()},
+    "wheelhouse": {
+        "wheelhouse": {
+            platform: icon
+            for platform, icon in zip(["Windows", "macOS", "Linux"], ["windows", "apple", "linux"])
+        }
+    },
+    "releases": {
+        "table_data": [
+        ]
+    },
+}
+
+html_context = {
+    "github_user": "ansys",
+    "github_repo": "pyansys-mcp",
+    "github_version": "main",
+    "doc_path": "doc/source",
+    "default_mode": "light",
+}
+
+html_theme_options = {
+    "logo": "pyansys",
+    "github_url": "https://github.com/ansys/pyansys-mcp",
+    "show_prev_next": False,
+    "show_breadcrumbs": True,
+    "collapse_navigation": True,
+    "use_edit_page_button": True,
+    "secondary_sidebar_items": {
+        "**": ["page-toc", "sourcelink"],
+        "index": ["page-toc"],
+    },
+    "check_switcher": False,
+    "static_search": {
+        "threshold": 0.5,
+        "min_chars_for_search": 2,
+        "ignoreLocation": True,
+    },
+    "footer_start": ["footer_left.html"],
+    "footer_center": ["footer_center.html"],
+    "footer_end": ["footer_right.html"],
+}
+
+# Check all references work fine
+nitpicky = True
+
+# The suffix(es) of source filenames.
+source_suffix = ".rst"
+
+# The master toctree document.
+master_doc = "index"
+
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "links.rst",
+]
+
+# Read link all targets from file
+path_to_links_rst = Path(__file__).parent / "links.rst"
+rst_epilog = path_to_links_rst.read_text(encoding="utf-8")
+
+# Ignore certain URLs
+linkcheck_ignore = [
+    r"https://www.ansys.com.*",
+    r"https://ansunits.docs.*",
+    r"https://download.ansys.com.*",
+    r"https://download.ansys.com",
+]
+
+# User agent
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.2420.81"  # noqa: E501
+
+
+###########################################################################
+
+# -------------------------------------------------------------------------
+# Defining Sphinx build hooks
+# -------------------------------------------------------------------------
+
+###########################################################################
+# Generate the package_versions directory
+###########################################################################
+# This section generates the package_versions directory in the doc/source
+# directory. This directory contains the .rst files that list the PyAnsys
+# package versions available in the various PyAnsys metapackages releases.
+#
+# The script retrieves the PyAnsys package versions from the pyproject.toml
+# file for the minor versions of the PyAnsys metapackage release branches.
+
+
+def get_documentation_link_from_pypi(library: str, version: str) -> str:
+    """Get the documentation link from PyPI for a specific library and version."""
+    # Get the PyPI metadata for the library
+    resp = requests.get(f"https://pypi.org/pypi/{library}/{version}/json")
+    metadata = resp.json()
+
+    # Get the documentation URL
+    default_url = f"https://pypi.org/project/{library}/{version}"
+    try:
+        project_urls = metadata["info"]["project_urls"]
+        url = None
+        for tag in [
+            "Documentation",
+            "Homepage",
+            "Source",
+        ]:  # Prefer Documentation, then Homepage, then Source...
+            url = project_urls.get(tag)
+            if url:
+                break
+
+        return url if url else default_url
+    except (KeyError, AttributeError):
+        return default_url
+
+
+def pyansys_multiversion_docs_link(docs_link: str, version: str) -> str:
+    """Verify if the documentation link is a multi-version link.
+
+    Notes
+    -----
+    Checks if the documentation link is a multi-version link. If it is, it
+    tries to access the documentation for the specific version. In case of
+    failure, it returns the default link. This is done on a best effort basis.
+
+    """
+    # First, let's check it is an official PyAnsys documentation link
+    if "docs.pyansys.com" in docs_link:
+        # Clean the link
+        tmp_link = docs_link.split("docs.pyansys.com")[0] + "docs.pyansys.com"
+        # Get the major.minor version
+        major_minor_version = ".".join(version.split(".")[:2])
+
+        # Attempt to access the documentation for the specific version
+        try:
+            resp = requests.get(f"{tmp_link}/version/{major_minor_version}/index.html")
+            if resp.status_code == 200:
+                return f"{tmp_link}/version/{major_minor_version}"
+        except requests.exceptions.RequestException:
+            pass
+
+    # Fall back to the default link
+    return docs_link
+
+
+def build_versions_table(branch: str) -> list[str]:
+    """Build the versions table for the PyAnsys libraries."""
+    # Download the pyproject.toml file
+    resp = requests.get(f"https://raw.githubusercontent.com/ansys/pyansys/{branch}/pyproject.toml")
+    with TMP_FILE.open("wb") as file:
+        file.write(resp.content)
+
+    # Load the pyproject.toml file using TOML parser
+    pyproject_toml = toml.load(TMP_FILE)
+
+    # Check if it is poetrty based or flit based and
+    # load the PyAnsys library versions
+    list_pyansys_libraries: list[str] = []
+    if "poetry" in pyproject_toml["tool"]:  # Assume poetry
+        for key, val in pyproject_toml["tool"]["poetry"]["dependencies"].items():
+            # Ignore some libraries
+            if key in ["python", "importlib-metadata", "Sphinx"]:
+                continue
+
+            # Check if the version is a string or a dictionary...
+            if (
+                isinstance(val, dict)
+                and isinstance(val["version"], str)
+                and val["version"].startswith("==")
+            ):
+                list_pyansys_libraries.append(f"{key}{val['version']}")
+            elif isinstance(val, str) and val.startswith("=="):
+                list_pyansys_libraries.append(f"{key}{val}")
+            else:
+                continue
+    else:  # Assume flit
+        list_pyansys_libraries += pyproject_toml["project"]["dependencies"]
+        list_pyansys_libraries += pyproject_toml["project"]["optional-dependencies"]["all"]
+
+        # Ignore some libraries: in this case, only importlib-metadata
+        list_pyansys_libraries = [
+            entry for entry in list_pyansys_libraries if not entry.startswith("importlib-metadata")
+        ]
+
+    # Delete the temporary file
+    TMP_FILE.unlink()
+
+    # Build the table
+    table = []
+
+    # Add the header
+    dict_table_entries: dict[str, str] = {}
+    for entry in list_pyansys_libraries:
+        library, version = entry.split("==")
+        pypi_link = f"https://pypi.org/project/{library}/{version}"
+        docs_link = get_documentation_link_from_pypi(library, version)
+
+        # EXPERIMENTAL: Let's see if we can point to the actual version documentation...
+        docs_link = pyansys_multiversion_docs_link(docs_link, version)
+
+        dict_table_entries[library] = (
+            f"`{library} <{docs_link}>`__",
+            f"`{version} <{pypi_link}>`__",
+        )
+
+    # Get the max length of the library and versions columns
+    libcol_size = max(len(entry[0]) for entry in dict_table_entries.values())
+    vercol_size = max(len(entry[1]) for entry in dict_table_entries.values())
+
+    # Format the table entries and headers
+    table = []
+    separator = f"+-{'-' * libcol_size}-+-{'-' * vercol_size}-+"
+    table.append(separator)
+    table.append(f"| {'Library'.ljust(libcol_size)} | {'Version'.ljust(vercol_size)} |")
+    table.append(f"+={'=' * libcol_size}=+={'=' * vercol_size}=+")
+    for library, entry in dict_table_entries.items():
+        table.append(f"| {entry[0].ljust(libcol_size)} | {entry[1].ljust(vercol_size)} |")
+        table.append(separator)
+
+    return table
+
+
+###########################################################################
+# Adapting thumbnails to the documentation
+###########################################################################
+# This section adapts the thumbnails to the documentation. The thumbnails
+# are resized to 640x480 pixels and centered on a white background.
+#
+# The script resizes all images in the _static/thumbnails directory to 640x480
+# pixels and saves the resized images in the same directory. After the
+# documentation build, the script reverts the changes to the thumbnails.
+
+
+def resize_with_background(input_image_path, output_image_path, target_size):
+    """Resize an image while maintaining aspect ratio and centering it on a white background.
+
+    Parameters
+    ----------
+    input_image_path : Path
+        The path to the input image.
+    output_image_path : Path
+        The path to save the output image.
+    target_size : tuple[int, int]
+        The target size of the output image as a tuple (width, height) in pixels.
+    """
+    # Open the input image
+    img = Image.open(input_image_path).convert("RGBA")  # Ensure the image has an alpha channel
+
+    # Resize the image while maintaining aspect ratio
+    img.thumbnail(target_size, Image.LANCZOS)
+
+    # Create a white background of the target size
+    background = Image.new(
+        "RGBA", target_size, (255, 255, 255, 255)
+    )  # White background with no transparency
+
+    # Calculate the position to center the resized image on the background
+    img_w, img_h = img.size
+    bg_w, bg_h = background.size
+    offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
+
+    # Paste the resized image onto the white background
+    background.paste(img, offset, mask=img)  # Use the image's transparency as a mask
+
+    # Convert the image to RGB to remove the alpha channel (no transparency)
+    background = background.convert("RGB")
+
+    # Save the result to the output path
+    background.save(output_image_path)
+
+
+###########################################################################
+
+# --------------------------------------------------------------------------
+# Sphinx build hooks
+# --------------------------------------------------------------------------
+
+
+def resize_thumbnails(app: sphinx.application.Sphinx):
+    """Resize all images in the current directory to 640x480 pixels."""
+    # Process all images
+
+    thumbnail_dir = Path(__file__).parent.absolute() / "_static" / "thumbnails"
+
+    for image in thumbnail_dir.glob("*.png"):
+        target_size = (640, 480)
+        resize_with_background(image, image, target_size)
+
+
+def revert_thumbnails(app: sphinx.application.Sphinx, exception):
+    """Resize all images in the current directory to 640x480 pixels."""
+    thumbnail_dir = Path(__file__).parent.absolute() / "_static" / "thumbnails"
+
+    subprocess.run(["git", "checkout", "--", thumbnail_dir])
+
+
+
+def setup(app: sphinx.application.Sphinx):
+    """Run different hook functions during the documentation build.
+
+    Parameters
+    ----------
+    app : sphinx.application.Sphinx
+        Sphinx instance containing all the configuration for the documentation build.
+    """
+    # At the beginning of the build process - update the version in cheatsheet
+    app.connect("builder-inited", resize_thumbnails)
+
+    app.connect("doctree-resolved", collect_blog_metadata)
+
+    # Reverting the thumbnails - no local changes
+    app.connect("build-finished", revert_thumbnails)
+
+
+def collect_blog_metadata(app, doctree, docname):
+    """Collect metadata from blog posts and save to a JSON file."""
+    meta = {}
+    static_blogs_metadata = Path(app.builder.outdir) / "_static" / "blog_metadata.json"
+    if docname.startswith("blog/"):  # Check if it's a blog post
+        for node in doctree.traverse(nodes.meta):
+            meta[node["name"]] = node["content"]
+        if not hasattr(app.env, "blog_posts"):
+            app.env.blog_posts = {}
+        app.env.blog_posts[f"{docname}.html"] = meta
+
+    # from the date, sort the blog posts in descending order
+    if hasattr(app.env, "blog_posts"):
+        app.env.blog_posts = dict(
+            sorted(
+                app.env.blog_posts.items(),
+                key=lambda item: item[1].get("date", ""),
+                reverse=True,
+            )
+        )
+
+    # Save metadata to a JSON file in the build directory
+    if hasattr(app.env, "blog_posts"):
+        blog_data = app.env.blog_posts
+        if not static_blogs_metadata.parent.exists():
+            return  # Directory does not exist, skip saving
+
+        with static_blogs_metadata.open("w", encoding="utf-8") as json_file:
+            json.dump(blog_data, json_file, indent=4)

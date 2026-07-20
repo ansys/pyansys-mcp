@@ -1,0 +1,87 @@
+projects:
+
+  pymapdl_mcp:
+    name: PyMAPDL MCP
+    repository: https://github.com/ansys/pymapdl-mcp
+    description: Model Context Protocol for ANSYS MAPDL. Enable intelligent code generation and automation for finite element analysis workflows.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [MCP, MAPDL, FEA]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://github.com/ansys/pymapdl-mcp
+      user_guide: https://github.com/ansys/pymapdl-mcp
+      examples: https://github.com/ansys/pymapdl-mcp
+      api: https://github.com/ansys/pymapdl-mcp
+    feedback:
+      issues: https://github.com/ansys/pymapdl-mcp/issues/new
+      discussions: https://github.com/ansys/pyansys-mcp/discussions
+
+  pylumerical_mcp:
+    name: PyLumerical MCP
+    repository: https://github.com/ansys/pylumerical-mcp
+    description: Model Context Protocol for ANSYS Lumerical. Streamline photonic and optical simulation design and optimization.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [MCP, Lumerical, Photonics]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://github.com/ansys/pylumerical-mcp
+      user_guide: https://github.com/ansys/pylumerical-mcp
+      examples: https://github.com/ansys/pylumerical-mcp
+      api: https://github.com/ansys/pylumerical-mcp
+    feedback:
+      issues: https://github.com/ansys/pylumerical-mcp/issues/new
+      discussions: https://github.com/ansys/pyansys-mcp/discussions
+
+  pyfluent_mcp:
+    name: PyFluent MCP
+    repository: https://github.com/ansys/pyfluent-mcp
+    description: Model Context Protocol for ANSYS Fluent. Accelerate computational fluid dynamics workflows with AI-assisted setup and analysis.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [MCP, Fluent, CFD]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://github.com/ansys/pyfluent-mcp
+      user_guide: https://github.com/ansys/pyfluent-mcp
+      examples: https://github.com/ansys/pyfluent-mcp
+      api: https://github.com/ansys/pyfluent-mcp
+    feedback:
+      issues: https://github.com/ansys/pyfluent-mcp/issues/new
+      discussions: https://github.com/ansys/pyansys-mcp/discussions
+
+  pymechanical_mcp:
+    name: PyMechanical MCP
+    repository: https://github.com/ansys/pymechanical-mcp
+    description: Model Context Protocol for ANSYS Mechanical. Simplify structural and multiphysics simulation automation with intelligent assistance.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [MCP, Mechanical, Simulation]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://github.com/ansys/pymechanical-mcp
+      user_guide: https://github.com/ansys/pymechanical-mcp
+      examples: https://github.com/ansys/pymechanical-mcp
+      api: https://github.com/ansys/pymechanical-mcp
+    feedback:
+      issues: https://github.com/ansys/pymechanical-mcp/issues/new
+      discussions: https://github.com/ansys/pyansys-mcp/discussions
+
+  pyaedt_mcp:
+    name: PyAEDT MCP
+    repository: https://github.com/ansys/pyaedt-mcp
+    description: Model Context Protocol for ANSYS Electronics Desktop. Design and optimize RF, microwave, and antenna systems with AI assistance.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [MCP, AEDT, Electronics]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://github.com/ansys/pyaedt-mcp
+      user_guide: https://github.com/ansys/pyaedt-mcp
+      examples: https://github.com/ansys/pyaedt-mcp
+      api: https://github.com/ansys/pyaedt-mcp
+    feedback:
+      issues: https://github.com/ansys/pyaedt-mcp/issues/new
+      discussions: https://github.com/ansys/pyansys-mcp/discussions
+
