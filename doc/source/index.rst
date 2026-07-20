@@ -1,18 +1,14 @@
 .. _ref_index:
 
-.. raw:: html
+PyAnsys Model Context Protocol (MCP)
+====================================
 
-    <section class="hero-section">
-      <h1 class="hero-title">PyAnsys Model Context Protocol (MCP)</h1>
-      <p class="hero-subtitle">
-        Intelligent integration for ANSYS simulations. Connect your favorite LLMs and AI tools
-        directly to ANSYS applications.
-        Build, automate, and optimize with AI-assisted workflows.
-      </p>
-      <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">
-        Discover all available PyAnsys MCPs in one place, or install them all at once with the metapackage.
-      </p>
-    </section>
+Intelligent integration for ANSYS simulations. Connect your favorite LLMs and AI tools
+directly to ANSYS applications. Build, automate, and optimize with AI-assisted workflows.
+
+
+Discover all available PyAnsys MCPs in one place, or install them all at once with the metapackage.
+
 
 .. jinja:: project_context
 
