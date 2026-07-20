@@ -20,7 +20,7 @@ permissions:
 env:
   MAIN_PYTHON_VERSION: '3.12'
   PACKAGE_NAME: "ansys-mcp-metapackage"
-  DOCUMENTATION_CNAME: ""
+  DOCUMENTATION_CNAME: "didactic-adventure-wnop5mr.pages.github.io/"
 
 jobs:
 
