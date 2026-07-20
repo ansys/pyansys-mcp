@@ -51,39 +51,50 @@ doc = [
     "toml==0.10.2",
 ]
 
-[tool.ruff]
-line-length = 100
-fix = true
-
 [tool.flit.module]
 name = "ansys.mcp.metapackage"
 
 [tool.flit.sdist]
 include = ["src/"]
 
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-docstring-code-format = true
-docstring-code-line-length = "dynamic"
-
-[tool.ruff.lint]
-select = [
-    "E",    # pycodestyle, see https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
-    "F",    # pyflakes, see https://docs.astral.sh/ruff/rules/#pyflakes-f
-    "I",    # isort, see https://docs.astral.sh/ruff/rules/#isort-i
-    "N",    # pep8-naming, see https://docs.astral.sh/ruff/rules/#pep8-naming-n
-    "PTH",  # flake8-use-pathlib, https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth
-    "TD",   # flake8-todos, https://docs.astral.sh/ruff/rules/#flake8-todos-td
+[tool.ruff]
+line-length = 100
+fix = true
+format.indent-style = "space"
+format.quote-style = "double"
+lint.select = [
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # pyflakes
+  "I",   # isort
+  "N",   # pep8-naming
+  "PTH", # flake8-use-pathlib
+  "TD",  # flake8-todos
 ]
-ignore = [
-    "TD002", # Missing author in TODOs comment
+lint.ignore = [
+  "TD002", # Missing author in TODO comments
 ]
+lint.per-file-ignores."!src/**.py" = [ "D" ]
+lint.per-file-ignores."__init__.py" = [ "F401" ]
+lint.per-file-ignores."tests/**.py" = [ "D", "E501", "N806" ]
+lint.isort.combine-as-imports = true
+lint.isort.force-sort-within-sections = true
+lint.isort.known-first-party = [ "ansys.mechanical.mcp" ]
+lint.pydocstyle.convention = "numpy"
 
-[tool.ruff.lint.pydocstyle]
-convention = "numpy"
 
-[tool.ruff.lint.isort]
-combine-as-imports = true
-force-sort-within-sections = true
-
+[tool.mypy]
+python_version = "3.14"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+namespace_packages = true
+explicit_package_bases = true
+mypy_path = "src"
+exclude = [
+    "^\\.venv/",
+    "^venv/",
+    "^build/",
+    "^dist/",
+]

@@ -103,7 +103,7 @@ Finally, install from the local wheelhouse:
 Per-project installation
 ------------------------
 
-Each PyAnsys MCP is also available as a standalone package. You can install them individually 
-if you only need specific solvers. 
+Each PyAnsys MCP is also available as a standalone package. You can install them individually
+if you only need specific solvers.
 
 Check the :ref:`ref_projects` page for a complete list of available MCPs.

@@ -3,8 +3,8 @@
 Projects
 ========
 
-Explore the complete ecosystem of PyAnsys Model Context Protocols. Each MCP provides 
-AI-powered integration with a specific ANSYS application, enabling seamless automation 
+Explore the complete ecosystem of PyAnsys Model Context Protocols. Each MCP provides
+AI-powered integration with a specific ANSYS application, enabling seamless automation
 and intelligent workflows.
 
 .. raw:: html

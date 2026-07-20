@@ -4,7 +4,9 @@ from datetime import datetime
 import json
 import os
 from pathlib import Path
-import subprocess
+
+# Controlled on use
+import subprocess  # nosec: B404
 
 from ansys_sphinx_theme import ansys_favicon, get_version_match
 from docutils import nodes
@@ -125,8 +127,7 @@ def read_optional_dependencies_from_pyproject():
     return optional_dependencies
 
 
-
-def convert_yaml_to_json():
+def convert_yaml_to_json() -> None:
     """
     Convert a YAML file to a JSON file.
 
@@ -209,10 +210,7 @@ jinja_contexts = {
             for platform, icon in zip(["Windows", "macOS", "Linux"], ["windows", "apple", "linux"])
         }
     },
-    "releases": {
-        "table_data": [
-        ]
-    },
+    "releases": {"table_data": []},
 }
 
 html_context = {
@@ -297,7 +295,10 @@ user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 def get_documentation_link_from_pypi(library: str, version: str) -> str:
     """Get the documentation link from PyPI for a specific library and version."""
     # Get the PyPI metadata for the library
-    resp = requests.get(f"https://pypi.org/pypi/{library}/{version}/json")
+    resp = requests.get(
+        f"https://pypi.org/pypi/{library}/{version}/json",
+        timeout=10,
+    )
     metadata = resp.json()
 
     # Get the documentation URL
@@ -338,7 +339,7 @@ def pyansys_multiversion_docs_link(docs_link: str, version: str) -> str:
 
         # Attempt to access the documentation for the specific version
         try:
-            resp = requests.get(f"{tmp_link}/version/{major_minor_version}/index.html")
+            resp = requests.get(f"{tmp_link}/version/{major_minor_version}/index.html", timeout=10)
             if resp.status_code == 200:
                 return f"{tmp_link}/version/{major_minor_version}"
         except requests.exceptions.RequestException:
@@ -351,7 +352,10 @@ def pyansys_multiversion_docs_link(docs_link: str, version: str) -> str:
 def build_versions_table(branch: str) -> list[str]:
     """Build the versions table for the PyAnsys libraries."""
     # Download the pyproject.toml file
-    resp = requests.get(f"https://raw.githubusercontent.com/ansys/pyansys/{branch}/pyproject.toml")
+    resp = requests.get(
+        f"https://raw.githubusercontent.com/ansys/pyansys/{branch}/pyproject.toml",
+        timeout=10,
+    )
     with TMP_FILE.open("wb") as file:
         file.write(resp.content)
 
@@ -391,12 +395,12 @@ def build_versions_table(branch: str) -> list[str]:
     TMP_FILE.unlink()
 
     # Build the table
-    table = []
+    table: list[str] = []
 
     # Add the header
-    dict_table_entries: dict[str, str] = {}
-    for entry in list_pyansys_libraries:
-        library, version = entry.split("==")
+    dict_table_entries: dict[str, tuple[str, str]] = {}
+    for lib_entry in list_pyansys_libraries:
+        library, version = lib_entry.split("==")
         pypi_link = f"https://pypi.org/project/{library}/{version}"
         docs_link = get_documentation_link_from_pypi(library, version)
 
@@ -413,7 +417,6 @@ def build_versions_table(branch: str) -> list[str]:
     vercol_size = max(len(entry[1]) for entry in dict_table_entries.values())
 
     # Format the table entries and headers
-    table = []
     separator = f"+-{'-' * libcol_size}-+-{'-' * vercol_size}-+"
     table.append(separator)
     table.append(f"| {'Library'.ljust(libcol_size)} | {'Version'.ljust(vercol_size)} |")
@@ -496,8 +499,7 @@ def revert_thumbnails(app: sphinx.application.Sphinx, exception):
     """Resize all images in the current directory to 640x480 pixels."""
     thumbnail_dir = Path(__file__).parent.absolute() / "_static" / "thumbnails"
 
-    subprocess.run(["git", "checkout", "--", thumbnail_dir])
-
+    subprocess.run(["git", "checkout", "--", str(thumbnail_dir)])  # nosec: B603, B607
 
 
 def setup(app: sphinx.application.Sphinx):
