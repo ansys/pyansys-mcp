@@ -1,7 +1,11 @@
 .. _ref_index:
 
+.. vale Google.Headings = NO
+
 PyAnsys Model Context Protocol (MCP)
 ====================================
+
+.. vale Google.Headings = YES
 
 Intelligent integration for ANSYS simulations. Connect your favorite LLMs and AI tools
 directly to ANSYS applications. Build, automate, and optimize with AI-assisted workflows.
