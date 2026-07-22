@@ -3,6 +3,20 @@
 Install
 =======
 
+Per-project installation
+------------------------
+
+Each PyAnsys MCP is available as a standalone package. You can install them individually
+if you only need specific solvers with the following commands:
+
+.. code:: bash
+
+    python -m pip install <project-name>-mcp
+
+
+Check the :ref:`ref_projects` page for a complete list of available MCPs.
+
+
 PyAnsys MCP metapackage
 -----------------------
 
@@ -56,36 +70,29 @@ Offline installation
 
 Start by downloading the wheelhouse artifact for your platform:
 
+
 .. jinja:: wheelhouse
 
-    .. raw:: html
+    .. csv-table::
+       :header-rows: 1
+       :widths: 16, 28, 28, 28
 
-        <table class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Platform</th>
-                    {% for python in SUPPORTED_PYTHON_VERSIONS %}
-                    <th>Python {{ python }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for platform, icon in wheelhouse.items() %}
-                <tr>
-                    <td><i class="fab fa-{{ icon }}"></i> {{ platform }}</td>
-                    {% for python in SUPPORTED_PYTHON_VERSIONS %}
-                    <td>
-                        {% if "dev" in VERSION %}
-                        <a href="https://github.com/ansys/pyansys-mcp/releases">Download wheelhouse</a>
-                        {% else %}
-                        <a href="https://github.com/ansys/pyansys-mcp/releases/download/v{{ VERSION }}/ansys-mcp-metapackage-v{{ VERSION }}-wheelhouse-{{ platform }}-{{ python }}.zip">Download wheelhouse</a>
-                        {% endif %}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+       :fas:`laptop` Platform,
+       {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
+       :fab:`python` Python {{ python }}
+       {%- if not loop.last -%},{%- endif -%}
+       {% endfor %}
+       {% for platform, icon in wheelhouse.items() -%}
+       :fab:`{{ icon }}` {{ platform }},
+       {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
+       {%- if "dev" in VERSION -%}
+       `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/{{ LAST_RELEASE }}/pyansys-mcp-{{ LAST_RELEASE }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
+       {%- else -%}
+       `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/v{{ VERSION }}/pyansys-mcp-v{{ VERSION }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
+       {%- endif -%}
+       {%- if not loop.last -%},{%- endif -%}
+       {% endfor %}
+       {% endfor %}
 
 Next, decompress the artifact:
 
@@ -98,12 +105,3 @@ Finally, install from the local wheelhouse:
 .. code-block:: bash
 
     python -m pip install ansys-mcp-metapackage -f wheelhouse --no-index --upgrade --ignore-installed
-
-
-Per-project installation
-------------------------
-
-Each PyAnsys MCP is also available as a standalone package. You can install them individually
-if you only need specific solvers.
-
-Check the :ref:`ref_projects` page for a complete list of available MCPs.
