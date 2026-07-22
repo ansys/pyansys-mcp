@@ -28,7 +28,7 @@ dependencies = [
     "toml>=0.10.2",
     "ansys-mapdl-mcp==0.2.1",
     # "ansys-fluent-mcp==0.1.0",  # TODO: only compatible with Python 3.13
-    "ansys-mechanical-mcp==0.1.0",
+    "ansys-mechanical-mcp==0.1.1",
     "ansys-aedt-mcp==0.1.0",
     "ansys-lumerical-mcp==0.1.0",
 ]
