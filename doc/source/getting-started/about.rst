@@ -71,8 +71,12 @@ or a custom agent) to run a simulation, the exchange looks roughly like this:
 The AI never directly calls the solver. It only knows about the tools the MCP
 server advertises, and the server decides what those tools actually do.
 
+.. vale Google.Headings = NO
+
 PyAnsys Common MCP
 ------------------
+
+.. vale Google.Headings = YES
 
 .. raw:: html
 
