@@ -29,7 +29,7 @@ jobs:
       contents: read # Needed to checkout the code
     steps:
       - name: "Run PyAnsys code style checks"
-        uses: ansys/actions/code-style@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+        uses: ansys/actions/code-style@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
@@ -40,7 +40,7 @@ jobs:
       contents: read # Needed to checkout the code
     steps:
       - name: "Run Ansys documentation style checks"
-        uses: ansys/actions/doc-style@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+        uses: ansys/actions/doc-style@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -50,7 +50,7 @@ jobs:
     permissions:
       contents: read # Needed to checkout and scan workflows
     steps:
-      - uses: ansys/actions/check-actions-security@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+      - uses: ansys/actions/check-actions-security@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           generate-summary: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Check PR title"
-        uses: ansys/actions/check-pr-title@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+        uses: ansys/actions/check-pr-title@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -86,7 +86,7 @@ jobs:
             os: macos-latest
     steps:
       - name: "Build wheelhouse and perform smoke test"
-        uses: ansys/actions/build-wheelhouse@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+        uses: ansys/actions/build-wheelhouse@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
@@ -101,7 +101,7 @@ jobs:
       contents: read # Needed to checkout the code
     steps:
       - name: Build documentation
-        uses: ansys/actions/doc-build@d946b24b9a765f4169bcc94afdb27bd1a0533741 # v10.3.2
+        uses: ansys/actions/doc-build@84b6533ae76f5dde69a1df26c18682160a8121cf # v10.3.5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           dependencies: "build-essential zip pandoc texlive-latex-extra latexmk texlive-pstricks"
@@ -118,7 +118,7 @@ jobs:
       id-token: write # Required for OIDC authentication to upload provenance attestations
     steps:
       - name: "Build library source and wheel artifacts"
-        uses: ansys/actions/build-library@a5b0351dc277d68c2dc1beca2d2674c7dfa4fc55 #v10.3.3
+        uses: ansys/actions/build-library@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -134,7 +134,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: "Deploy development documentation"
-        uses: ansys/actions/doc-deploy-dev@d946b24b9a765f4169bcc94afdb27bd1a0533741 # v10.3.2
+        uses: ansys/actions/doc-deploy-dev@84b6533ae76f5dde69a1df26c18682160a8121cf # v10.3.5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -150,7 +150,7 @@ jobs:
       contents: write # Needed to push documentation to gh-pages branch
     steps:
       - name: "Deploy the PR documentation"
-        uses: ansys/actions/doc-deploy-pr@7419880d64bb0bba83f968ca803611df0b76faf0 #v10.3.4
+        uses: ansys/actions/doc-deploy-pr@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
@@ -169,7 +169,7 @@ jobs:
       contents: write # Required for GitHub release
     steps:
       - name: "Release to GitHub"
-        uses: ansys/actions/release-github@7419880d64bb0bba83f968ca803611df0b76faf0 #v10.3.4
+        uses: ansys/actions/release-github@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           library-name: ${{ env.PACKAGE_NAME }}
@@ -193,7 +193,7 @@ jobs:
     needs: [release]
     steps:
       - name: "Deploy the stable documentation"
-        uses: ansys/actions/doc-deploy-stable@7419880d64bb0bba83f968ca803611df0b76faf0 #v10.3.4
+        uses: ansys/actions/doc-deploy-stable@84b6533ae76f5dde69a1df26c18682160a8121cf #v10.3.5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
