@@ -9,7 +9,7 @@ The PyAnsys MCP Hub brings together all Model Context Protocols (MCPs) for ANSYS
 Get the complete PyAnsys MCP ecosystem:
 
 ```bash
-pip install ansys-mcp-metapackage
+pip install pyansys-mcp  #TODO: change the name of the package
 ```
 
 ### Install Individual MCPs
@@ -17,42 +17,7 @@ pip install ansys-mcp-metapackage
 Pick the MCPs you need for your workflow:
 
 ```bash
-pip install pymapdl-mcp
-pip install pyfluent-mcp
-pip install pymechanical-mcp
-pip install pyaedt-mcp
-pip install pylumerical-mcp
-```
-
-## Documentation
-
-The documentation website provides detailed information about each MCP, including:
-- API documentation
-- Usage examples
-- Integration guides
-- Best practices
-
-## Building the Documentation
-
-### Install Dependencies
-
-```bash
-uv sync --group doc
-```
-
-### Generate Documentation
-
-```bash
-cd doc
-make clean html
-```
-
-### View Documentation
-
-Open the generated documentation in your browser:
-
-```bash
-doc/_build/html/index.html
+pip install ansys-<product>-mcp
 ```
 
 ## What are Model Context Protocols (MCPs)?

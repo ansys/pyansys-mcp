@@ -18,7 +18,7 @@ from sphinx.builders.latex import LaTeXBuilder
 import toml
 import yaml
 
-from ansys.mcp.metapackage import __version__ as pyansys_mcp_version
+from pyansys.mcp import __version__ as pyansys_mcp_version
 
 # Declare constants
 GENERATED_DIR = Path(__file__).parent / "package_versions"

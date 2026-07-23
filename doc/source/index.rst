@@ -59,7 +59,7 @@ Discover all available PyAnsys MCPs in one place, or install them all at once wi
         </div>
         <div class="feature-card">
           <h3><i class="fa fa-cubes"></i> One package</h3>
-          <p>Install <code>ansys-mcp-metapackage</code> to get all solvers at once, or pick individual MCPs as needed.</p>
+          <p>Install <code>pyansys-mcp</code> to get all solvers at once, or pick individual MCPs as needed.</p>
         </div>
         <div class="feature-card">
           <h3><i class="fa fa-layer-group"></i> Common foundation</h3>

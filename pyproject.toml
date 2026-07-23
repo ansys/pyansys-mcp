@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 # Check https://flit.readthedocs.io/en/latest/pyproject_toml.html for all available sections
-name = "ansys-mcp-metapackage"
+name = "pyansys-mcp"
 version = "0.1.dev0"
 description = "PyAnsys Model Context Protocol (MCP) metapackage - unified hub for AI-powered ANSYS simulation workflows"
 readme = "README.md"
@@ -27,7 +27,7 @@ classifiers = [
 dependencies = [
     "toml>=0.10.2",
     "ansys-mapdl-mcp==0.2.1",
-    # "ansys-fluent-mcp==0.1.0",  # TODO: only compatible with Python 3.13
+    "ansys-fluent-mcp==0.2.0",
     "ansys-mechanical-mcp==0.1.1",
     "ansys-aedt-mcp==0.1.0",
     "ansys-lumerical-mcp==0.1.0",
@@ -52,7 +52,7 @@ doc = [
 ]
 
 [tool.flit.module]
-name = "ansys.mcp.metapackage"
+name = "pyansys.mcp"
 
 [tool.flit.sdist]
 include = ["src/"]

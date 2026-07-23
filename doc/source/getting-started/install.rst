@@ -11,7 +11,7 @@ if you only need specific solvers with the following commands:
 
 .. code:: bash
 
-    python -m pip install <project-name>-mcp
+    python -m pip install ansys-<product>-mcp
 
 
 Check the :ref:`ref_projects` page for a complete list of available MCPs.
@@ -31,7 +31,7 @@ Download and install PyAnsys MCP metapackage from `PyPI`_:
 
 .. code:: bash
 
-    python -m pip install ansys-mcp-metapackage
+    python -m pip install pyansys-mcp
 
 
 The PyAnsys MCP |version| metapackage includes the following projects:
@@ -104,4 +104,4 @@ Finally, install from the local wheelhouse:
 
 .. code-block:: bash
 
-    python -m pip install ansys-mcp-metapackage -f wheelhouse --no-index --upgrade --ignore-installed
+    python -m pip install pyansys-mcp -f wheelhouse --no-index --upgrade --ignore-installed
