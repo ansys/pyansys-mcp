@@ -9,7 +9,7 @@ The PyAnsys MCP Hub brings together all Model Context Protocols (MCPs) for ANSYS
 Get the complete PyAnsys MCP ecosystem:
 
 ```bash
-pip install pyansys-mcp  #TODO: change the name of the package
+pip install pyansys-mcp
 ```
 
 ### Install Individual MCPs
