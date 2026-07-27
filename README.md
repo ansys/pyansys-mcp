@@ -1,6 +1,7 @@
 # PyAnsys Model Context Protocol (MCP) Hub
 
-The PyAnsys MCP Hub brings together all Model Context Protocols (MCPs) for ANSYS applications, enabling seamless AI-powered automation and workflows. This repository serves as the central hub and documentation site for the PyAnsys MCP ecosystem.
+The PyAnsys MCP Hub gathers the Model Context Protocols (MCPs) built on top of PyAnsys libraries,
+enabling seamless AI-powered automation and workflows.
 
 ## Installation
 
