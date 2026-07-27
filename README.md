@@ -31,7 +31,7 @@ Model Context Protocols (MCPs) are standardized interfaces that connect Large La
 - Get AI-assisted recommendations for simulation setup and optimization
 - Integrate ANSYS workflows into your AI-powered applications
 
-Each PyAnsys MCP implements the 
+Each PyAnsys MCP implements the
 [Model Context Protocol specification](https://modelcontextprotocol.io/), ensuring compatibility
 with Claude, GPT, and other MCP-compatible AI tools.
 
