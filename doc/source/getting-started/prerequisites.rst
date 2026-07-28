@@ -12,7 +12,11 @@ Download and install Ansys
 
 Download Ansys software from the `Ansys Customer Portal`_. Ensure you have a license to use the software.
 
+.. vale Google.Headings = NO
+
 Download and install Python
 ---------------------------
+
+.. vale Google.Headings = YES
 
 Download and install the latest stable version of Python from the https://www.python.org/downloads.

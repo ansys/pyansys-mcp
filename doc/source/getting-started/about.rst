@@ -9,8 +9,12 @@ communicate with external services. It is language-agnostic and transport-agnost
 a server can expose capabilities over ``stdio``, HTTP with Server-Sent Events, or
 WebSockets, and any MCP-compatible client can use them the same way.
 
+.. vale Google.Headings = NO
+
 MCP primitives
 --------------
+
+.. vale Google.Headings = YES
 
 The protocol defines three types of server-side primitives:
 
