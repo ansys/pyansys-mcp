@@ -17,8 +17,12 @@ if you only need specific solvers with the following commands:
 Check the :ref:`ref_projects` page for a complete list of available MCPs.
 
 
+.. vale Google.Headings = NO
+
 PyAnsys MCP metapackage
 -----------------------
+
+.. vale Google.Headings = YES
 
 The PyAnsys MCP metapackage is distributed as a Python library. Its installation
 follows the standard Python package installation process.
