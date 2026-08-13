@@ -69,3 +69,17 @@ projects:
     feedback:
       issues: https://github.com/ansys/pyaedt-mcp/issues/new
       discussions: https://github.com/ansys/pyaedt-mcp/discussions
+
+  pycfx_mcp:
+    name: PyCFX-MCP
+    repository: https://github.com/ansys/pycfx-mcp
+    description: Model Context Protocol for ANSYS CFX. Enhance computational fluid dynamics simulations with AI-driven setup and analysis.
+    thumbnail: _static/ansys_logo_transparent_white.png
+    status: stable
+    tags: [CFX, CFD]
+    icon: _static/icons/structures.svg
+    documentation:
+      base: https://cfx-mcp.docs.pyansys.com
+    feedback:
+      issues: https://github.com/ansys/pycfx-mcp/issues/new
+      discussions: https://github.com/ansys/pycfx-mcp/discussions
