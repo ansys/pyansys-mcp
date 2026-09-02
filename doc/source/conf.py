@@ -61,7 +61,7 @@ LaTeXBuilder.supported_image_types = [
 project = "pyansys-mcp"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS Inc."
-cname = os.getenv("DOCUMENTATION_CNAME", default="docs.pyansys.com")
+cname = os.getenv("DOCUMENTATION_CNAME", default="mcp.docs.pyansys.com")
 switcher_version = get_version_match(pyansys_mcp_version)
 
 # Get the PyAnsys MCP version
