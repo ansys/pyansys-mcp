@@ -94,7 +94,7 @@ jobs:
           check-licenses: false
 
   docs-build:
-    name: Building Documentation
+    name: "Building Documentation"
     runs-on: ubuntu-latest
     needs: [docs-style]
     permissions:
@@ -125,7 +125,7 @@ jobs:
           attest-provenance: true
 
   deploy-docs-dev:
-    name: Deploy development docs (on main branch)
+    name: "Deploy development docs (on main branch)"
     runs-on: ubuntu-latest
     needs: [package]
     permissions:

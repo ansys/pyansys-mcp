@@ -61,7 +61,7 @@ LaTeXBuilder.supported_image_types = [
 project = "pyansys-mcp"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS Inc."
-cname = os.getenv("DOCUMENTATION_CNAME", default="docs.pyansys.com")
+cname = os.getenv("DOCUMENTATION_CNAME", default="mcp.docs.pyansys.com")
 switcher_version = get_version_match(pyansys_mcp_version)
 
 # Get the PyAnsys MCP version
@@ -131,11 +131,13 @@ def convert_yaml_to_json() -> None:
     """
     Convert a YAML file to a JSON file.
 
-    Parameters:
+    Parameters
+    ----------
     yaml_path (Path): Path to the YAML file.
     json_path (Path): Path to save the JSON file.
 
-    Returns:
+    Returns
+    -------
     None
     """
     if not metadata.exists() or not metadata.is_file():
@@ -231,6 +233,10 @@ html_theme_options = {
     "secondary_sidebar_items": {
         "**": ["page-toc", "sourcelink"],
         "index": ["page-toc"],
+    },
+    "switcher": {
+        "json_url": f"https://{cname}/versions.json",
+        "version_match": switcher_version,
     },
     "check_switcher": False,
     "static_search": {

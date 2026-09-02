@@ -18,5 +18,5 @@
 .. _PyAnsys Common MCP user guide: https://common-mcp.docs.pyansys.com/version/stable/user_guide/index.html
 
 .. Contacts and support
-.. _PyAnsys support: mailto:pyansys.core@ansys.com
+.. _PyAnsys support: mailto:pyansys-core@synopsys.com
 .. _Github issues: https://github.com/ansys/pyansys-mcp/issues
