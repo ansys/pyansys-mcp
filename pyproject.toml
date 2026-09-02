@@ -33,7 +33,7 @@ dependencies = [
 ]
 optional-dependencies = {}
 urls.Discussions = "https://github.com/ansys/pyansys-mcp/discussions"
-urls.Documentation = "TODO"
+urls.Documentation = "https://mcp.docs.pyansys.com"
 urls.Issues = "https://github.com/ansys/pyansys-mcp/issues"
 urls.Releases = "https://github.com/ansys/pyansys-mcp/releases"
 urls.Source = "https://github.com/ansys/pyansys-mcp"
