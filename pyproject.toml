@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "flit_core.buildapi"
-requires = [ "flit-core>=3.2,<4" ]
+requires = [ "flit-core>=3.2,<5" ]
 
 [project]
 # Check https://flit.readthedocs.io/en/latest/pyproject_toml.html for all available sections
@@ -25,11 +25,11 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-  "ansys-aedt-mcp==0.1.2",
-  "ansys-fluent-mcp==0.2.1",
+  "ansys-aedt-mcp==0.1.4",
+  "ansys-fluent-mcp==0.4.0",
   "ansys-lumerical-mcp==0.1.0",
   "ansys-mapdl-mcp==0.2.1",
-  "ansys-mechanical-mcp==0.1.2",
+  "ansys-mechanical-mcp==0.2.0",
 ]
 optional-dependencies = {}
 urls.Discussions = "https://github.com/ansys/pyansys-mcp/discussions"
@@ -40,7 +40,7 @@ urls.Source = "https://github.com/ansys/pyansys-mcp"
 
 [dependency-groups]
 doc = [
-  "ansys-sphinx-theme==1.9.0",
+  "ansys-sphinx-theme==1.10.0",
   "jinja2>=3.1.6",
   "pillow>=12.2.0",
   "pygithub>=2.9.1",
