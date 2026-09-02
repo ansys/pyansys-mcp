@@ -234,6 +234,10 @@ html_theme_options = {
         "**": ["page-toc", "sourcelink"],
         "index": ["page-toc"],
     },
+    "switcher": {
+        "json_url": f"https://{cname}/versions.json",
+        "version_match": switcher_version,
+    },
     "check_switcher": False,
     "static_search": {
         "threshold": 0.5,
