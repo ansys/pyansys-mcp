@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
+requires = [ "flit-core>=3.2,<4" ]
 
 [project]
 # Check https://flit.readthedocs.io/en/latest/pyproject_toml.html for all available sections
@@ -8,54 +8,51 @@ name = "pyansys-mcp"
 version = "0.1.dev0"
 description = "PyAnsys Model Context Protocol (MCP) metapackage - unified hub for AI-powered ANSYS simulation workflows"
 readme = "README.md"
-requires-python = ">=3.12,<4"
-authors = [{ name = "Synopsys, Inc. and ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
-maintainers = [{ name = "Synopsys, Inc. and ANSYS, Inc.", email = "pyansys.core@ansys.com" }]
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = [ "LICENSE" ]
+maintainers = [ { name = "Synopsys, Inc. and ANSYS, Inc.", email = "pyansys.core@ansys.com" } ]
+authors = [ { name = "Synopsys, Inc. and ANSYS, Inc.", email = "pyansys.core@ansys.com" } ]
+requires-python = ">=3.12,<4"
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Information Analysis",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Topic :: Scientific/Engineering",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Information Analysis",
 ]
-
 dependencies = [
-    "toml>=0.10.2",
-    "ansys-mapdl-mcp==0.2.1",
-    "ansys-fluent-mcp==0.2.1",
-    "ansys-mechanical-mcp==0.1.2",
-    "ansys-aedt-mcp==0.1.2",
-    "ansys-lumerical-mcp==0.1.0",
+  "ansys-aedt-mcp==0.1.2",
+  "ansys-fluent-mcp==0.2.1",
+  "ansys-lumerical-mcp==0.1.0",
+  "ansys-mapdl-mcp==0.2.1",
+  "ansys-mechanical-mcp==0.1.2",
+  "toml>=0.10.2",
 ]
+optional-dependencies = {}
+urls.Documentation = "TODO"
+urls.Source = "https://github.com/ansys/pyansys-mcp"
 
-[project.optional-dependencies]
-[project.urls]
-Source = "https://github.com/ansys/pyansys-mcp"
-Documentation = "TODO"
 [dependency-groups]
 doc = [
-    "ansys-sphinx-theme==1.9.0",
-    "Jinja2>=3.1.6",
-    "Pillow>=12.2.0",
-    "PyGithub>=2.9.1",
-    "sphinx-autobuild>=2025.08.25",
-    "sphinx-copybutton>=0.5.2",
-    "sphinx-design>=0.6.1",
-    "sphinxcontrib-mermaid>=2.0.2",
-    "sphinx-jinja>=2.0.2",
-    "toml==0.10.2",
+  "ansys-sphinx-theme==1.9.0",
+  "jinja2>=3.1.6",
+  "pillow>=12.2.0",
+  "pygithub>=2.9.1",
+  "sphinx-autobuild>=2025.8.25",
+  "sphinx-copybutton>=0.5.2",
+  "sphinx-design>=0.6.1",
+  "sphinx-jinja>=2.0.2",
+  "sphinxcontrib-mermaid>=2.0.2",
+  "toml==0.10.2",
 ]
 
-[tool.flit.module]
-name = "pyansys.mcp"
-
-[tool.flit.sdist]
-include = ["src/"]
+[tool.flit]
+module.name = "pyansys.mcp"
+sdist.include = [ "src/" ]
 
 [tool.ruff]
 line-length = 100
@@ -82,19 +79,18 @@ lint.isort.force-sort-within-sections = true
 lint.isort.known-first-party = [ "ansys.mechanical.mcp" ]
 lint.pydocstyle.convention = "numpy"
 
-
 [tool.mypy]
-python_version = "3.14"
-strict = false
-warn_return_any = true
-warn_unused_configs = true
-ignore_missing_imports = true
-namespace_packages = true
-explicit_package_bases = true
 mypy_path = "src"
 exclude = [
-    "^\\.venv/",
-    "^venv/",
-    "^build/",
-    "^dist/",
+  "^\\.venv/",
+  "^build/",
+  "^dist/",
+  "^venv/",
 ]
+namespace_packages = true
+explicit_package_bases = true
+ignore_missing_imports = true
+python_version = "3.14"
+warn_return_any = true
+strict = false
+warn_unused_configs = true
