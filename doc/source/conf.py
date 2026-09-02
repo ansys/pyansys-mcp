@@ -131,11 +131,13 @@ def convert_yaml_to_json() -> None:
     """
     Convert a YAML file to a JSON file.
 
-    Parameters:
+    Parameters
+    ----------
     yaml_path (Path): Path to the YAML file.
     json_path (Path): Path to save the JSON file.
 
-    Returns:
+    Returns
+    -------
     None
     """
     if not metadata.exists() or not metadata.is_file():

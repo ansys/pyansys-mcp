@@ -30,10 +30,12 @@ dependencies = [
   "ansys-lumerical-mcp==0.1.0",
   "ansys-mapdl-mcp==0.2.1",
   "ansys-mechanical-mcp==0.1.2",
-  "toml>=0.10.2",
 ]
 optional-dependencies = {}
+urls.Discussions = "https://github.com/ansys/pyansys-mcp/discussions"
 urls.Documentation = "TODO"
+urls.Issues = "https://github.com/ansys/pyansys-mcp/issues"
+urls.Releases = "https://github.com/ansys/pyansys-mcp/releases"
 urls.Source = "https://github.com/ansys/pyansys-mcp"
 
 [dependency-groups]
@@ -68,29 +70,6 @@ lint.select = [
   "PTH", # flake8-use-pathlib
   "TD",  # flake8-todos
 ]
-lint.ignore = [
-  "TD002", # Missing author in TODO comments
-]
-lint.per-file-ignores."!src/**.py" = [ "D" ]
-lint.per-file-ignores."__init__.py" = [ "F401" ]
-lint.per-file-ignores."tests/**.py" = [ "D", "E501", "N806" ]
 lint.isort.combine-as-imports = true
 lint.isort.force-sort-within-sections = true
-lint.isort.known-first-party = [ "ansys.mechanical.mcp" ]
 lint.pydocstyle.convention = "numpy"
-
-[tool.mypy]
-mypy_path = "src"
-exclude = [
-  "^\\.venv/",
-  "^build/",
-  "^dist/",
-  "^venv/",
-]
-namespace_packages = true
-explicit_package_bases = true
-ignore_missing_imports = true
-python_version = "3.12"
-warn_return_any = true
-strict = false
-warn_unused_configs = true
