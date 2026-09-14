@@ -4,9 +4,9 @@ Getting started
 ===============
 
 This section helps you quickly get started with the MCPs built with PyAnsys libraries.
-In addition to explaining the `Model Context Protocol standard <https://modelcontextprotocol.io/>`_
-and the `PyAnsys Common MCP`_ library, it lists all installation prerequisites and guides you
-through installation of the PyAnsys MCP metapackage.
+In addition to explaining the `Model Context Protocol <https://modelcontextprotocol.io/>`_
+standard and the `PyAnsys Common MCP`_ library, this section lists installation prerequisites and
+then guides you through installation of the PyAnsys MCP metapackage.
 
 .. grid:: 1 1 3 3
 

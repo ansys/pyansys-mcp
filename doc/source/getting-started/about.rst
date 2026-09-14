@@ -32,7 +32,7 @@ The protocol defines three types of server-side primitives:
    * - Tools
      - Call named functions with inputs defined by a JSON schema, similar to
        function calling in the OpenAI API.
-     - Launch a solver, run a script, read files.
+     - Launch a solver, run a script, and read files.
    * - Resources
      - Read data that the server exposes to the client, similar to ``GET``
        endpoints.

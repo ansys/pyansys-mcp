@@ -18,7 +18,7 @@ With these MCPs, you can:
 - Get AI-assisted recommendations for simulation setup and optimization.
 - Integrate Ansys workflows into your AI-powered applications.
 
-Each MCP follows the `Model Context Protocol standard`_, so it
+Each MCP follows the `Model Context Protocol`_ standard, so it
 works with Claude, GPT, and other MCP-compatible AI tools.
 
 .. _Model Context Protocol standard: https://modelcontextprotocol.io/
@@ -93,7 +93,7 @@ works with Claude, GPT, and other MCP-compatible AI tools.
             class="workflow-cta-btn"
             target="_blank"
             rel="noopener"
-          >**Join the discussion**</a>
+          >Join the discussion</a>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ and intelligent workflows.
 .. raw:: html
 
    <div style="padding: 1rem; background: #f9f9f9; border-radius: 0.5rem; margin-bottom: 2rem; border: 2px solid">
-     <p style="margin: 0;"><strong>💡 Tip:</strong> Want to install all MCPs at once? See <code>pyansys-mcp</code> instead. See the <a href="getting-started/index.html">Getting started</a> for metapackage installation instructions.</p>
+     <p style="margin: 0;"><strong>💡 Tip:</strong> Want to install all MCPs at once? See <a href="getting-started/index.html">Getting started</a> in the PyAnsys MCP documentation for metapackage installation instructions.</p>
    </div>
 
 
