@@ -18,10 +18,8 @@ With these MCPs, you can:
 - Get AI-assisted recommendations for simulation setup and optimization.
 - Integrate Ansys workflows into your AI-powered applications.
 
-Each MCP follows the `Model Context Protocol`_ standard, so it
+Each MCP follows the `Model Context Protocol <https://modelcontextprotocol.io/>`_ standard, so it
 works with Claude, GPT, and other MCP-compatible AI tools.
-
-.. _Model Context Protocol standard: https://modelcontextprotocol.io/
 
 .. jinja:: project_context
 
