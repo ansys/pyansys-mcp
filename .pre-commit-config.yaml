@@ -5,7 +5,7 @@
 repos:
   # Linting and formatting with ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 1f1e8bf348ff38fc88619a38d3ca4d9c56abea49  # frozen: v0.16.5
+    rev: 321478e58f4938179c6b86e4ddfa923d1547a49b  # frozen: v0.16.6
     hooks:
       # Run the linter.
       - id: ruff-check
@@ -38,7 +38,7 @@ repos:
 
   # Spell checking with typos
   - repo: https://github.com/crate-ci/typos
-    rev: c132f8b9e3ac7f8f0625490b1cb5b906d1d6a63a  # frozen: v1
+    rev: d43b6c087ac471e2ea7b8af622ff15f05c0c365b  # frozen: v1.50.1
     hooks:
       - id: typos
         args: ["--config", "doc/styles/typos.toml"]
