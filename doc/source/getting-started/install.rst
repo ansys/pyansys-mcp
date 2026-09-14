@@ -1,42 +1,39 @@
 .. _ref_install:
 
-Install
-=======
+Installation
+============
 
-Per-project installation
+Install individual MCPs
 ------------------------
 
-Each PyAnsys MCP is available as a standalone package. You can install them individually
-if you only need specific solvers with the following commands:
+You can install MCPs for specific Ansys applications as standalone packages. Install only
+the MCPs you need:
 
 .. code:: bash
 
     python -m pip install ansys-<product>-mcp
 
-
-Check the :ref:`ref_projects` page for a complete list of available MCPs.
+For a complete list of available MCPs, see the :ref:`ref_projects` page.
 
 
 .. vale Google.Headings = NO
 
-PyAnsys MCP metapackage
------------------------
+Install the PyAnsys MCP metapackage
+-----------------------------------
 
 .. vale Google.Headings = YES
 
-The PyAnsys MCP metapackage is distributed as a Python library. Its installation
-follows the standard Python package installation process.
+The PyAnsys MCP metapackage is a Python package that you can install with
+standard Python package tools.
 
 Online installation
 ~~~~~~~~~~~~~~~~~~~
 
-Download and install PyAnsys MCP metapackage from `PyPI`_:
-
+Install the PyAnsys MCP metapackage from `PyPI`_:
 
 .. code:: bash
 
     python -m pip install pyansys-mcp
-
 
 The PyAnsys MCP |version| metapackage includes the following projects:
 
@@ -72,40 +69,39 @@ The PyAnsys MCP |version| metapackage includes the following projects:
 Offline installation
 ~~~~~~~~~~~~~~~~~~~~
 
-Start by downloading the wheelhouse artifact for your platform:
+#. Download the wheelhouse artifact for your platform:
 
+   .. jinja:: wheelhouse
 
-.. jinja:: wheelhouse
+       .. csv-table::
+          :header-rows: 1
+          :widths: 16, 28, 28, 28
 
-    .. csv-table::
-       :header-rows: 1
-       :widths: 16, 28, 28, 28
+          :fas:`laptop` Platform,
+          {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
+          :fab:`python` Python {{ python }}
+          {%- if not loop.last -%},{%- endif -%}
+          {% endfor %}
+          {% for platform, icon in wheelhouse.items() -%}
+          :fab:`{{ icon }}` {{ platform }},
+          {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
+          {%- if "dev" in VERSION -%}
+          `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/{{ LAST_RELEASE }}/pyansys-mcp-{{ LAST_RELEASE }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
+          {%- else -%}
+          `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/v{{ VERSION }}/pyansys-mcp-v{{ VERSION }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
+          {%- endif -%}
+          {%- if not loop.last -%},{%- endif -%}
+          {% endfor %}
+          {% endfor %}
 
-       :fas:`laptop` Platform,
-       {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
-       :fab:`python` Python {{ python }}
-       {%- if not loop.last -%},{%- endif -%}
-       {% endfor %}
-       {% for platform, icon in wheelhouse.items() -%}
-       :fab:`{{ icon }}` {{ platform }},
-       {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
-       {%- if "dev" in VERSION -%}
-       `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/{{ LAST_RELEASE }}/pyansys-mcp-{{ LAST_RELEASE }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
-       {%- else -%}
-       `Download wheelhouse <https://github.com/ansys/pyansys-mcp/releases/download/v{{ VERSION }}/pyansys-mcp-v{{ VERSION }}-all-wheelhouse-{{ platform }}-{{ python }}.zip>`__
-       {%- endif -%}
-       {%- if not loop.last -%},{%- endif -%}
-       {% endfor %}
-       {% endfor %}
+#. Decompress the artifact:
 
-Next, decompress the artifact:
+   .. code-block:: bash
 
-.. code-block:: bash
+       unzip <path/to/wheelhouse.zip> wheelhouse
 
-    unzip <path/to/wheelhouse.zip> wheelhouse
+#. Install the metapackage from the local wheelhouse:
 
-Finally, install from the local wheelhouse:
+   .. code-block:: bash
 
-.. code-block:: bash
-
-    python -m pip install pyansys-mcp -f wheelhouse --no-index --upgrade --ignore-installed
+       python -m pip install pyansys-mcp -f wheelhouse --no-index --upgrade --ignore-installed
