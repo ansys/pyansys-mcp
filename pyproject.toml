@@ -40,7 +40,7 @@ urls.Source = "https://github.com/ansys/pyansys-mcp"
 
 [dependency-groups]
 doc = [
-  "ansys-sphinx-theme==1.10.0",
+  "ansys-sphinx-theme==1.11.0",
   "jinja2>=3.1.6",
   "pillow>=12.2.0",
   "pygithub>=2.9.1",
