@@ -55,7 +55,7 @@ or a custom agent) to run a simulation, the exchange looks roughly like this:
        actor User
        participant Client as AI Client<br/>(Claude, Copilot, Cursor…)
        participant MCP as MCP Server<br/>(ansys-mapdl-mcp, ansys-fluent-mcp…)
-       participant Solver as ANSYS Solver<br/>(MAPDL, Fluent…)
+       participant Solver as Ansys Solver<br/>(MAPDL, Fluent…)
 
        User->>Client: "Run a modal analysis and give me<br/>the first three natural frequencies."
        Client->>MCP: list_tools()
