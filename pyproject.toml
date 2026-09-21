@@ -25,7 +25,7 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-  "ansys-aedt-mcp==0.1.4",
+  "ansys-aedt-mcp==0.2.1",
   "ansys-fluent-mcp==0.4.0",
   "ansys-lumerical-mcp==0.1.0",
   "ansys-mapdl-mcp==0.2.1",
