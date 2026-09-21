@@ -3,7 +3,7 @@ projects:
   pymapdl_mcp:
     name: PyMAPDL-MCP
     repository: https://github.com/ansys/pymapdl-mcp
-    description: Model Context Protocol for ANSYS MAPDL. Enable intelligent code generation and automation for finite element analysis workflows.
+    description: Model Context Protocol for Ansys MAPDL. Enable intelligent code generation and automation for finite element analysis workflows.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [MAPDL, FEA, Structures]
@@ -17,7 +17,7 @@ projects:
   pylumerical_mcp:
     name: PyLumerical-MCP
     repository: https://github.com/ansys/pylumerical-mcp
-    description: Model Context Protocol for ANSYS Lumerical. Streamline photonic and optical simulation design and optimization.
+    description: Model Context Protocol for Ansys Lumerical. Streamline photonic and optical simulation design and optimization.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [Lumerical, Photonics, Optics]
@@ -31,7 +31,7 @@ projects:
   pyfluent_mcp:
     name: PyFluent-MCP
     repository: https://github.com/ansys/pyfluent-mcp
-    description: Model Context Protocol for ANSYS Fluent. Accelerate computational fluid dynamics workflows with AI-assisted setup and analysis.
+    description: Model Context Protocol for Ansys Fluent. Accelerate computational fluid dynamics workflows with AI-assisted setup and analysis.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [Fluent, CFD]
@@ -45,7 +45,7 @@ projects:
   pymechanical_mcp:
     name: PyMechanical-MCP
     repository: https://github.com/ansys/pymechanical-mcp
-    description: Model Context Protocol for ANSYS Mechanical. Simplify structural and multiphysics simulation automation with intelligent assistance.
+    description: Model Context Protocol for Ansys Mechanical. Simplify structural and multiphysics simulation automation with intelligent assistance.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [Mechanical, FEA, Structures]
@@ -59,7 +59,7 @@ projects:
   pyaedt_mcp:
     name: PyAEDT-MCP
     repository: https://github.com/ansys/pyaedt-mcp
-    description: Model Context Protocol for ANSYS Electronics Desktop. Design and optimize RF, microwave, and antenna systems with AI assistance.
+    description: Model Context Protocol for Ansys Electronics Desktop. Design and optimize RF, microwave, and antenna systems with AI assistance.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [AEDT, Electronics]
@@ -73,7 +73,7 @@ projects:
   pycfx_mcp:
     name: PyCFX-MCP
     repository: https://github.com/ansys/pycfx-mcp
-    description: Model Context Protocol for ANSYS CFX. Enhance computational fluid dynamics simulations with AI-driven setup and analysis.
+    description: Model Context Protocol for Ansys CFX. Enhance computational fluid dynamics simulations with AI-driven setup and analysis.
     thumbnail: _static/ansys_logo_transparent_white.png
     status: stable
     tags: [CFX, CFD]

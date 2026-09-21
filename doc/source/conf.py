@@ -59,8 +59,8 @@ LaTeXBuilder.supported_image_types = [
 ]  # noqa: E501
 
 project = "pyansys-mcp"
-copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
-author = "ANSYS Inc."
+copyright = f"(c) {datetime.now().year} Synopsys, Inc. and ANSYS, Inc. All rights reserved"
+author = "Synopsys, Inc. and ANSYS, Inc."
 cname = os.getenv("DOCUMENTATION_CNAME", default="mcp.docs.pyansys.com")
 switcher_version = get_version_match(pyansys_mcp_version)
 

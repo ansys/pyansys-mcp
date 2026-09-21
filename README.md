@@ -1,48 +1,46 @@
-# PyAnsys Model Context Protocol (MCP) Hub
+# PyAnsys MCP
 
-The PyAnsys MCP Hub gathers the Model Context Protocols (MCPs) built on top of PyAnsys libraries,
-enabling seamless AI-powered automation and workflows.
+PyAnsys MCP is a metapackage that helps you discover and install Model Context Protocol (MCP)
+servers built with PyAnsys libraries. These MCPs connect large language models (LLMs) and
+AI tools to Ansys applications.
+
+With these MCPs, you can:
+
+- Generate simulation code from natural language prompts.
+- Automate repetitive simulation tasks.
+- Get AI-assisted recommendations for simulation setup and optimization.
+- Integrate Ansys workflows into your AI-powered applications.
+
+Each MCP follows the [Model Context Protocol](https://modelcontextprotocol.io/) standard, so it works with Claude, GPT, and other MCP-compatible AI tools.
 
 ## Installation
 
-### Install All MCPs
+You can install all MCPs or only the ones you need for your workflows.
 
-Get the complete PyAnsys MCP ecosystem:
+### Install all MCPs
+
+Install all MCPs in the metapackage:
 
 ```bash
 pip install pyansys-mcp
 ```
 
-### Install Individual MCPs
+### Install individual MCPs
 
-Pick the MCPs you need for your workflow:
+Install only the MCPs you need for your workflows:
 
 ```bash
 pip install ansys-<product>-mcp
 ```
 
-## What are Model Context Protocols (MCPs)?
-
-Model Context Protocols (MCPs) are standardized interfaces that connect Large Language Models
-(LLMs) and AI tools directly to ANSYS applications. With MCPs, you can:
-
-- Generate simulation code from natural language descriptions
-- Automate repetitive simulation tasks
-- Get AI-assisted recommendations for simulation setup and optimization
-- Integrate ANSYS workflows into your AI-powered applications
-
-Each PyAnsys MCP implements the
-[Model Context Protocol specification](https://modelcontextprotocol.io/), ensuring compatibility
-with Claude, GPT, and other MCP-compatible AI tools.
-
 ## Contributing
 
-We welcome contributions and feedback! Please:
+You can contribute to this project and share feedback:
 
-- Report issues on the relevant MCP repository
-- Share ideas in our [discussions](https://github.com/ansys/pyansys-mcp/discussions)
-- Check out individual MCP repositories for contribution guidelines
+- Report issues in the relevant MCP repository.
+- Share ideas on the [PyAnsys MCP Discussions](https://github.com/ansys/pyansys-mcp/discussions) page.
+- Review the contribution guidelines in the individual MCP repositories.
 
 ## License
 
-Licensed under the Apache License 2.0, see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.

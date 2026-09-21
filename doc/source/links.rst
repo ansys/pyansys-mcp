@@ -2,7 +2,7 @@
 .. _ANSYS, Inc.: https://www.ansys.com
 .. _Ansys: https://www.ansys.com
 .. _Ansys products: https://www.ansys.com/products
-.. _Ansys Customer Portal: https://download.ansys.com
+.. _Ansys Download Center: https://download.ansys.com
 
 .. Python libraries
 .. _Python: https://www.python.org/
