@@ -25,11 +25,11 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-  "ansys-aedt-mcp==0.2.1",
-  "ansys-fluent-mcp==0.4.0",
+  "ansys-aedt-mcp==0.2.3",
+  "ansys-fluent-mcp==0.5.0",
   "ansys-lumerical-mcp==0.1.0",
-  "ansys-mapdl-mcp==0.2.1",
-  "ansys-mechanical-mcp==0.2.0",
+  "ansys-mapdl-mcp==0.3.0",
+  "ansys-mechanical-mcp==0.2.1",
 ]
 optional-dependencies = {}
 urls.Discussions = "https://github.com/ansys/pyansys-mcp/discussions"
