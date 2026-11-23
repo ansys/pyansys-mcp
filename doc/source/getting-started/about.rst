@@ -48,6 +48,8 @@ A typical interaction
 When you ask an MCP-compatible AI client (Claude Desktop, GitHub Copilot, Cursor,
 or a custom agent) to run a simulation, the exchange looks roughly like this:
 
+.. vale off
+
 .. mermaid::
 
    %%{init: {'theme': 'default', 'themeVariables': {'fontSize': '20px', 'fontFamily': 'arial'}, 'sequence': {'width': 250, 'actorMargin': 80, 'messageMargin': 60}}}%%
@@ -75,6 +77,8 @@ or a custom agent) to run a simulation, the exchange looks roughly like this:
        MCP-->>Client: {"frequencies": [45.3, 112.7, 198.4], "unit": "Hz"}
 
        Client-->>User: "The first three natural frequencies<br/>are 45.3 Hz, 112.7 Hz, and 198.4 Hz."
+
+.. vale on
 
 The client never calls the solver directly. It uses the tools that the MCP
 server advertises, and the server determines what those tools do.
