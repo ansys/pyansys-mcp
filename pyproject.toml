@@ -5,7 +5,7 @@ requires = [ "flit-core>=3.2,<5" ]
 [project]
 # Check https://flit.readthedocs.io/en/latest/pyproject_toml.html for all available sections
 name = "pyansys-mcp"
-version = "0.1.dev0"
+version = "0.1.0"
 description = "PyAnsys Model Context Protocol (MCP) metapackage - unified hub for AI-powered Ansys simulation workflows"
 readme = "README.md"
 license = "Apache-2.0"
