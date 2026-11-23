@@ -21,15 +21,16 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Topic :: Scientific/Engineering",
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-  "ansys-aedt-mcp==0.2.1",
-  "ansys-fluent-mcp==0.4.0",
+  "ansys-aedt-mcp==0.2.4",
+  "ansys-fluent-mcp==0.5.0",
   "ansys-lumerical-mcp==0.1.0",
-  "ansys-mapdl-mcp==0.2.1",
-  "ansys-mechanical-mcp==0.2.0",
+  "ansys-mapdl-mcp==0.3.2",
+  "ansys-mechanical-mcp==0.3.0",
 ]
 optional-dependencies = {}
 urls.Discussions = "https://github.com/ansys/pyansys-mcp/discussions"
@@ -40,7 +41,7 @@ urls.Source = "https://github.com/ansys/pyansys-mcp"
 
 [dependency-groups]
 doc = [
-  "ansys-sphinx-theme==1.11.0",
+  "ansys-sphinx-theme==1.12.0",
   "jinja2>=3.1.6",
   "pillow>=12.2.0",
   "pygithub>=2.9.1",
