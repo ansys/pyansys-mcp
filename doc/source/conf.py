@@ -199,7 +199,7 @@ def read_project_json():
 
 jinja_globals = {
     "VERSION": version,
-    "SUPPORTED_PYTHON_VERSIONS": ["3.12", "3.13", "3.14"],
+    "SUPPORTED_PYTHON_VERSIONS": ["3.12", "3.13", "3.14", "3.15"],
     "SUPPORTED_PLATFORMS": ["Windows", "macOS", "Linux"],
 }
 jinja_contexts = {
