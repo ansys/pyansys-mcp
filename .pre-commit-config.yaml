@@ -44,12 +44,13 @@ repos:
         args: ["--config", "doc/styles/typos.toml"]
         exclude: "(^doc/styles/config/vocabularies)|(^.github/labels.yml$)"
 
-  # Format pyproject.toml files
-  - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 3c6e76e10abcae02303212289efed3413350769c  # frozen: v2.30.6
-    hooks:
-      - id: pyproject-fmt
-        args: [--keep-full-version]
+  # TODO: Re-enable pyproject.toml formatting once Python 3.15 is fully supported
+  # # Format pyproject.toml files
+  # - repo: https://github.com/tox-dev/pyproject-fmt
+  #   rev: 3c6e76e10abcae02303212289efed3413350769c  # frozen: v2.30.6
+  #   hooks:
+  #     - id: pyproject-fmt
+  #       args: [--keep-full-version]
 
   # Validates GitHub workflow files
   - repo: https://github.com/python-jsonschema/check-jsonschema
