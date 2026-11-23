@@ -75,7 +75,7 @@ Offline installation
 
        .. csv-table::
           :header-rows: 1
-          :widths: 16, 28, 28, 28
+          :widths: 16, 28, 28, 28, 28
 
           :fas:`laptop` Platform,
           {%- for python in SUPPORTED_PYTHON_VERSIONS -%}
