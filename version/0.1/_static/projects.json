@@ -1,0 +1,127 @@
+{
+    "projects": {
+        "PyFluent-MCP": {
+            "name": "PyFluent-MCP",
+            "repository": "https://github.com/ansys/pyfluent-mcp",
+            "description": "Model Context Protocol for Ansys Fluent. Accelerate computational fluid dynamics workflows with AI-assisted setup and analysis.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "Fluent",
+                "CFD"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://fluent-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pyfluent-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pyfluent-mcp/discussions"
+            },
+            "github_stars": 77
+        },
+        "PyMechanical-MCP": {
+            "name": "PyMechanical-MCP",
+            "repository": "https://github.com/ansys/pymechanical-mcp",
+            "description": "Model Context Protocol for Ansys Mechanical. Simplify structural and multiphysics simulation automation with intelligent assistance.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "Mechanical",
+                "FEA",
+                "Structures"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://mechanical-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pymechanical-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pymechanical-mcp/discussions"
+            },
+            "github_stars": 45
+        },
+        "PyAEDT-MCP": {
+            "name": "PyAEDT-MCP",
+            "repository": "https://github.com/ansys/pyaedt-mcp",
+            "description": "Model Context Protocol for Ansys Electronics Desktop. Design and optimize RF, microwave, and antenna systems with AI assistance.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "AEDT",
+                "Electronics"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://aedt-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pyaedt-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pyaedt-mcp/discussions"
+            },
+            "github_stars": 43
+        },
+        "PyLumerical-MCP": {
+            "name": "PyLumerical-MCP",
+            "repository": "https://github.com/ansys/pylumerical-mcp",
+            "description": "Model Context Protocol for Ansys Lumerical. Streamline photonic and optical simulation design and optimization.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "Lumerical",
+                "Photonics",
+                "Optics"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://lumerical-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pylumerical-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pylumerical-mcp/discussions"
+            },
+            "github_stars": 24
+        },
+        "PyMAPDL-MCP": {
+            "name": "PyMAPDL-MCP",
+            "repository": "https://github.com/ansys/pymapdl-mcp",
+            "description": "Model Context Protocol for Ansys MAPDL. Enable intelligent code generation and automation for finite element analysis workflows.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "MAPDL",
+                "FEA",
+                "Structures"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://mapdl-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pymapdl-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pymapdl-mcp/discussions"
+            },
+            "github_stars": 12
+        },
+        "PyCFX-MCP": {
+            "name": "PyCFX-MCP",
+            "repository": "https://github.com/ansys/pycfx-mcp",
+            "description": "Model Context Protocol for Ansys CFX. Enhance computational fluid dynamics simulations with AI-driven setup and analysis.",
+            "thumbnail": "_static/ansys_logo_transparent_white.png",
+            "status": "stable",
+            "tags": [
+                "CFX",
+                "CFD"
+            ],
+            "icon": "_static/icons/structures.svg",
+            "documentation": {
+                "base": "https://cfx-mcp.docs.pyansys.com"
+            },
+            "feedback": {
+                "issues": "https://github.com/ansys/pycfx-mcp/issues/new",
+                "discussions": "https://github.com/ansys/pycfx-mcp/discussions"
+            },
+            "github_stars": 5
+        }
+    }
+}

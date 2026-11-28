@@ -1,0 +1,44 @@
+{%- macro render_card(metadata) -%}
+{%- set status = metadata.get('status', '') -%}
+{%- set feedback = metadata.get('feedback', {}) -%}
+<div
+    class="project-card sd-card sd-shadow-sm sd-card-hover"
+    data-statuses='["{{ status }}"]'
+    data-status="{{ status }}"
+    data-tags='{{ (metadata.get("tags") or []) | tojson }}'
+    data-icon="{{ metadata.get('icon', '_static/icons/ansys-icon-light.svg') }}"
+    onclick="window.location.href='{{ metadata['documentation']['base'] }}';"
+>
+    {%- if metadata.get('github_stars', 0) > 0 %}
+        <span class="project-star-badge">
+            <span class="project-star-icon">&#9733;</span>
+            <span class="project-star-count">{{ metadata.get('github_stars', 0) }}</span>
+        </span>
+    {%- endif %}
+    <div class="sd-card-body">
+        <div class="card-header-row">
+            <p class="sd-card-title sd-font-weight-bold">{{ metadata['name'] }}</p>
+        </div>
+        <p class="sd-card-body-text"> {{ metadata['description'] }} </p>
+        <p class="sd-card-text">
+            {%- for tag in metadata.get('tags', []) %}
+                <span class="sd-sphinx-override sd-badge sd-bg-muted sd-text-primary">{{ tag }}</span>
+            {%- endfor %}
+        </p>
+        <div class="card-feedback-row" onclick="event.stopPropagation()">
+            {%- set docs = metadata.get('documentation', {}) %}
+            {%- if docs.get('user_guide') %}
+                <a href="{{ docs['user_guide'] }}" class="card-feedback-btn" target="_blank" rel="noopener"><i class="fa fa-book"></i> Docs</a>
+            {%- endif %}
+            {%- if feedback %}
+                {%- if feedback.get('issues') %}
+                    <a href="{{ feedback['issues'] }}" class="card-feedback-btn" target="_blank" rel="noopener"><i class="fab fa-github"></i> Open Issue</a>
+                {%- endif %}
+                {%- if feedback.get('discussions') %}
+                    <a href="{{ feedback['discussions'] }}" class="card-feedback-btn" target="_blank" rel="noopener">Discuss</a>
+                {%- endif %}
+            {%- endif %}
+        </div>
+    </div>
+</div>
+{%- endmacro %}
